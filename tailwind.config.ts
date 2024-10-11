@@ -13,6 +13,9 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
     },
+    fontFamily: {
+      poppins: "'Poppins', sans- serif"
+    },
   },
   plugins: [],
 };
