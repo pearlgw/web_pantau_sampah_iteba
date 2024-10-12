@@ -28,7 +28,7 @@ const NavbarPage = () => {
                       transition={{ duration: 3 }} src="/gw.png" className="h-8" alt="Pantau Sampah" />
                   <motion.span initial={{ x: -100, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 2 }} className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Pantau Sampah</motion.span>
+                      transition={{ duration: 2 }} className="self-center text-2xl font-semibold whitespace-nowrap text-white">Pantau Sampah</motion.span>
               </a>
               <button
                   data-collapse-toggle="navbar-default"
@@ -55,7 +55,7 @@ const NavbarPage = () => {
                   </svg>
               </button>
               <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-                  <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                  <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-900 rounded-lg bg-gray-800 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-gray-900">
                       <li>
                           <motion.a initial={{ y: -100, opacity: 0 }} 
                               animate={{ y: 0, opacity: 1 }}
