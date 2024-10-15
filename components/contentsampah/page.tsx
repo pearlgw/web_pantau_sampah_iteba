@@ -2,6 +2,7 @@
 import axios from 'axios';
 import Image from 'next/image';
 import MotionContent from './motionContent';
+import { cookies } from 'next/headers';
 
 interface Image {
     filename: string;
@@ -14,6 +15,9 @@ const ContentSampah = async () => {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     try {
+        // To set this route as dynamic instead of static
+        cookies()
+
         const response = await axios.get('http://103.124.196.178:8000/images', {
             headers: {
                 'Authorization': `Bearer ${apiKey}`
