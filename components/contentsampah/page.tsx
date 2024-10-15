@@ -11,9 +11,14 @@ interface Image {
 
 const ContentSampah = async () => {
     let images: Image[] = [];
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     try {
-        const response = await axios.get('http://103.124.196.178:8000/images');
+        const response = await axios.get('http://103.124.196.178:8000/images', {
+            headers: {
+                'Authorization': `Bearer ${apiKey}`
+            }
+        });
         images = response.data;
         images.sort((a, b) => new Date(b.upload_time).getTime() - new Date(a.upload_time).getTime());
         images = images.slice(0, 6);
