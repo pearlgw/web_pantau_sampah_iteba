@@ -2,7 +2,6 @@
 
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 
 interface Image {
@@ -11,9 +10,9 @@ interface Image {
   upload_time: string;
 }
 
-const DetailDevice = () => {
-  const searchParams = useSearchParams();
-  const deviceId = searchParams.get('device_id'); // Mengambil device_id dari query parameter
+// @ts-expect-error params
+const DetailDevice = ({ params }) => {
+  const deviceId = params.deviceId;
   const [images, setImages] = useState<Image[]>([]);
 
   useEffect(() => {

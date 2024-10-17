@@ -3,7 +3,6 @@
 import axios from 'axios';
 import Image from 'next/image';
 import MotionContent from './motionContent';
-import { cookies } from 'next/headers';
 import Link from 'next/link';
 
 interface Image {
@@ -29,7 +28,6 @@ const ContentSampah = async () => {
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     try {
-        cookies();
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/images`, {
             headers: {
                 'Authorization': `Bearer ${apiKey}`
@@ -87,7 +85,7 @@ const ContentSampah = async () => {
                                 </div>
 
                                 <div className="p-5 text-center">
-                                    <Link href={`/detail-device?device_id=${image.device_id}`} className="flex justify-center items-center px-10 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 w-full">
+                                    <Link href={`/detail-device/${image.device_id}`} className="flex justify-center items-center px-10 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 w-full">
                                         Lihat Detail
                                     </Link>
                                 </div>
