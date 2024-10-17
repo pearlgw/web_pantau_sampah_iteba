@@ -30,7 +30,8 @@ const ContentSampah = async () => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/images`, {
             headers: {
-                'Authorization': `Bearer ${apiKey}`
+                'Authorization': `Bearer ${apiKey}`,
+                'ngrok-skip-browser-warning': "true"
             }
         });
         images = response.data;

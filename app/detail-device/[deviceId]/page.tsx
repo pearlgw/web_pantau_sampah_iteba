@@ -22,7 +22,8 @@ const DetailDevice = ({ params }) => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/images`, {
           headers: {
-            'Authorization': `Bearer ${apiKey}`
+            'Authorization': `Bearer ${apiKey}`,
+            'ngrok-skip-browser-warning': "true"
           }
         });
         const allImages = response.data;
