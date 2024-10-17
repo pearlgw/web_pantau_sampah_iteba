@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import Image from 'next/image';
 import MotionContent from './motionContent';
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 
 interface Image {
     filename: string;
@@ -10,22 +12,46 @@ interface Image {
     upload_time: string;
 }
 
+const formatDateToIndo = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+
 const ContentSampah = async () => {
     let images: Image[] = [];
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     try {
-        // To set this route as dynamic instead of static
-        cookies()
-
-        const response = await axios.get('http://103.124.196.178:8000/images', {
+        cookies();
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/images`, {
             headers: {
                 'Authorization': `Bearer ${apiKey}`
             }
         });
         images = response.data;
-        images.sort((a, b) => new Date(b.upload_time).getTime() - new Date(a.upload_time).getTime());
-        images = images.slice(0, 6);
+
+        const targetDeviceIds = ['001', '002'];
+        const imagesByDevice: { [key: string]: Image } = {};
+
+        images.forEach((image) => {
+            const deviceId = image.device_id;
+            const uploadTime = new Date(image.upload_time).getTime();
+
+            if (targetDeviceIds.includes(deviceId)) {
+                if (!imagesByDevice[deviceId] || new Date(imagesByDevice[deviceId].upload_time).getTime() < uploadTime) {
+                    imagesByDevice[deviceId] = image;
+                }
+            }
+        });
+
+        images = Object.values(imagesByDevice);
 
     } catch (error) {
         console.error('Error fetching images:', error);
@@ -35,43 +61,48 @@ const ContentSampah = async () => {
         <section className="pt-8" id='pantauSampah'>
             <div className="py-8 px-4 mx-auto max-w-screen-xl">
                 <MotionContent />
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 justify-items-center'>
+                <div className='grid md:grid-cols-2 gap-4 mt-10 justify-items-center'>
                     {images.length > 0 ? (
                         images.map((image: Image, index: number) => (
-                            <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <a href="#">
-                                    <div className="relative w-full h-64 rounded-t-lg overflow-hidden">
-                                        <Image
-                                            src={`http://103.124.196.178:8000/show/?filename=${image.filename}`}
+                            <div key={index} className="w-full mx-auto bg-gray-800 border border-gray-700 rounded-lg shadow my-4">
+                                <div className="flex justify-between items-center p-4 border-b-2 border-gray-600">
+                                    <div className="text-lg font-bold text-white">
+                                        Device Id: {image.device_id}
+                                    </div>
+                                    <div className="text-lg font-bold text-white">
+                                        {formatDateToIndo(image.upload_time)}
+                                    </div>
+                                </div>
+                                <div className="flex">
+                                    <div className="w-1/2 relative overflow-hidden">
+                                        <img
+                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show/?filename=${image.filename}`}
                                             alt={image.filename}
-                                            fill
-                                            className="object-cover"
+                                            className="w-full h-[220px] object-cover"
                                         />
                                     </div>
-                                </a>
-                                <div className="p-5">
-                                    <a href="#">
-                                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Device Id: {image.device_id}</h5>
-                                    </a>
-                                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                                    <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Read more
-                                        <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                        </svg>
-                                    </a>
+
+                                    <div className="w-1/2 bg-gray-700 flex items-center justify-center">
+                                    </div>
+                                </div>
+
+                                <div className="p-5 text-center">
+                                    <Link href={`/detail-device?device_id=${image.device_id}`} className="flex justify-center items-center px-10 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 w-full">
+                                        Lihat Detail
+                                    </Link>
                                 </div>
                             </div>
                         ))
                     ) : (
                         <p className='text-white'>Tidak ada gambar yang tersedia.</p>
                     )}
+
                 </div>
-                <div className="text-center mt-6 md:mt-10">
+                {/* <div className="text-center mt-6 md:mt-10">
                     <a href="#" className="bg-blue-900 hover:bg-blue-800 px-4 py-2 rounded-lg text-white">
                         Show All Pantauan Sampah
                     </a>
-                </div>
+                </div> */}
             </div>
         </section>
     );
