@@ -48,8 +48,8 @@ const DetailDevice = ({ params }) => {
 
   return (
     <div className='mx-2 md:mx-16 mt-20 text-white'>
-      <div className='flex gap-4'>
-        <div className="w-1/2 h-64 p-6 bg-gray-800 border border-gray-700 rounded-lg shadow">
+      <div className='flex flex-col lg:flex-row gap-4'>
+        <div className="w-full lg:w-1/2 h-64 p-6 bg-gray-800 border border-gray-700 rounded-lg shadow">
           <a href="#">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-white text-center">Keterangan Tempat</h5>
           </a>
