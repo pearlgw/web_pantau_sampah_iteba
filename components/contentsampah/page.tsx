@@ -85,8 +85,9 @@ const ContentSampah = async () => {
                                     </div>
                                 </div>
 
-                                <div className="p-5 text-center">
-                                    <Link href={`/detail-device/${image.device_id}`} className="flex justify-center items-center px-10 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 w-full">
+                                <div className="p-5 flex justify-between items-center">
+                                    <p className="text-white">{image.device_id === '001' ? 'Kelurahan Pulau Buluh' : 'Kelurahan Tj. Uma'}</p>
+                                    <Link href={`/detail-device/${image.device_id}`} className="px-6 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                         Lihat Detail
                                     </Link>
                                 </div>
@@ -95,7 +96,6 @@ const ContentSampah = async () => {
                     ) : (
                         <p className='text-white'>Tidak ada gambar yang tersedia.</p>
                     )}
-
                 </div>
                 {/* <div className="text-center mt-6 md:mt-10">
                     <a href="#" className="bg-blue-900 hover:bg-blue-800 px-4 py-2 rounded-lg text-white">
