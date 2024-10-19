@@ -9,6 +9,9 @@ interface Image {
     filename: string;
     device_id: string;
     upload_time: string;
+    filename_labeled: string;
+    level: string;
+    count: string;
 }
 
 const formatDateToIndo = (dateString: string | number | Date) => {
@@ -72,21 +75,39 @@ const ContentSampah = async () => {
                                         {formatDateToIndo(image.upload_time)}
                                     </div>
                                 </div>
-                                <div className="flex">
-                                    <div className="w-1/2 relative overflow-hidden">
-                                        <img
-                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show/?filename=${image.filename}`}
-                                            alt={image.filename}
-                                            className="w-full h-[220px] object-cover"
-                                        />
-                                    </div>
 
-                                    <div className="w-1/2 bg-gray-700 flex items-center justify-center">
+                                <div className='px-4 pt-5'>
+                                    <div className="flex gap-2">
+                                        <div className="w-1/2 relative overflow-hidden">
+                                            <img
+                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show/?filename=${image.filename}`}
+                                                alt={image.filename}
+                                                className="w-full object-cover rounded-lg"
+                                            />
+                                        </div>
+
+                                        <div className="w-1/2 relative overflow-hidden">
+                                            <img
+                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show-labeled-images/?filename=${image.filename_labeled}`}
+                                                alt={image.filename_labeled}
+                                                className="w-full object-cover rounded-lg"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="p-5 flex justify-between items-center">
-                                    <p className="text-white">{image.device_id === '001' ? 'Kelurahan Pulau Buluh' : 'Kelurahan Tj. Uma'}</p>
+                                <div className="flex justify-between items-center p-4 border-b-2 border-gray-600">
+                                    <div className="inline-flex rounded-md shadow-sm" role="group">
+                                        <p className="px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+                                            {image.device_id === '001' ? 'Kelurahan : Pulau Buluh' : 'Kelurahan : Tj. Uma'}
+                                        </p>
+                                        <p className='px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border-t border-b border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700'>
+                                            Level: {image.level.charAt(0).toUpperCase() + image.level.slice(1)}
+                                        </p>
+                                        <p className='px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border border-gray-200 rounded-e-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700'>
+                                            Count: {image.count}
+                                        </p>
+                                    </div>
                                     <Link href={`/detail-device/${image.device_id}`} className="px-6 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                         Lihat Detail
                                     </Link>
