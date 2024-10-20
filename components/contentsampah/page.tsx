@@ -14,18 +14,6 @@ interface Image {
     count: string;
 }
 
-const formatDateToIndo = (dateString: string | number | Date) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-};
-
 const ContentSampah = async () => {
     let images: Image[] = [];
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -65,58 +53,62 @@ const ContentSampah = async () => {
                 <MotionContent />
                 <div className='grid md:grid-cols-2 gap-4 mt-10 justify-items-center'>
                     {images.length > 0 ? (
-                        images.map((image: Image, index: number) => (
-                            <div key={index} className="w-full mx-auto bg-gray-800 border border-gray-700 rounded-lg shadow my-4">
-                                <div className="flex justify-between items-center p-4 border-b-2 border-gray-600">
-                                    <div className="text-lg font-bold text-white">
-                                        Device Id: {image.device_id}
-                                    </div>
-                                    <div className="text-lg font-bold text-white">
-                                        {formatDateToIndo(image.upload_time)}
-                                    </div>
-                                </div>
-
-                                <div className='px-4 pt-5'>
-                                    <div className="flex gap-2">
-                                        <div className="w-1/2 relative overflow-hidden">
-                                            <img
-                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show/?filename=${image.filename}`}
-                                                alt={image.filename}
-                                                className="w-full object-cover rounded-lg"
-                                            />
+                        images.map((image: Image, index: number) => {
+                            const formattedTime = image.upload_time.slice(0, 19).replace('T', ' ');
+                            return (
+                                <div key={index} className="w-full mx-auto bg-gray-800 border border-gray-700 rounded-lg shadow my-4">
+                                    <div className="flex justify-between items-center p-4 border-b-2 border-gray-600">
+                                        <div className="text-lg font-bold text-white">
+                                            Device Id: {image.device_id}
                                         </div>
-
-                                        <div className="w-1/2 relative overflow-hidden">
-                                            <img
-                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show-labeled-images/?filename=${image.filename_labeled}`}
-                                                alt={image.filename_labeled}
-                                                className="w-full object-cover rounded-lg"
-                                            />
+                                        <div className="text-lg font-bold text-white">
+                                            {formattedTime}
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className="flex justify-between items-center p-4 border-b-2 border-gray-600">
-                                    <div className="inline-flex rounded-md shadow-sm" role="group">
-                                        <p className="px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
-                                            {image.device_id === '001' ? 'Kelurahan : Pulau Buluh' : 'Kelurahan : Tj. Uma'}
-                                        </p>
-                                        <p className='px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border-t border-b border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700'>
-                                            Level: {image.level.charAt(0).toUpperCase() + image.level.slice(1)}
-                                        </p>
-                                        <p className='px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border border-gray-200 rounded-e-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700'>
-                                            Count: {image.count}
-                                        </p>
+                                    <div className='px-4 pt-5'>
+                                        <div className="flex gap-2">
+                                            <div className="w-1/2 relative overflow-hidden">
+                                                <img
+                                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show/?filename=${image.filename}`}
+                                                    alt={image.filename}
+                                                    className="w-full object-cover rounded-lg"
+                                                />
+                                            </div>
+
+                                            <div className="w-1/2 relative overflow-hidden">
+                                                <img
+                                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/show-labeled-images/?filename=${image.filename_labeled}`}
+                                                    alt={image.filename_labeled}
+                                                    className="w-full object-cover rounded-lg"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <Link href={`/detail-device/${image.device_id}`} className="px-6 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                        Lihat Detail
-                                    </Link>
+
+                                    <div className="flex justify-between items-center p-4 border-b-2 border-gray-600">
+                                        <div className="inline-flex rounded-md shadow-sm" role="group">
+                                            <p className="px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+                                                {image.device_id === '001' ? 'Kelurahan : Tj Uma' : 'Kelurahan : Pulau Buluh'}
+                                            </p>
+                                            <p className='px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border-t border-b border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700'>
+                                                Level: {image.level.charAt(0).toUpperCase() + image.level.slice(1)}
+                                            </p>
+                                            <p className='px-4 py-2 text-sm font-medium text-white hover:text-gray-900 bg-gray-800 border border-gray-200 rounded-e-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700'>
+                                                Count: {image.count}
+                                            </p>
+                                        </div>
+                                        <Link href={`/detail-device/${image.device_id}`} className="px-6 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                            Lihat Detail
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        ))
+                            );
+                        })
                     ) : (
                         <p className='text-white'>Tidak ada gambar yang tersedia.</p>
                     )}
+
                 </div>
                 {/* <div className="text-center mt-6 md:mt-10">
                     <a href="#" className="bg-blue-900 hover:bg-blue-800 px-4 py-2 rounded-lg text-white">

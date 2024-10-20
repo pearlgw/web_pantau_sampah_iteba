@@ -22,7 +22,7 @@ const NavbarPage = () => {
   return (
       <nav className={`fixed top-0 left-0 w-full z-50 bg-gray-900 ${showBorder ? 'border-b border-white' : ''}`}>
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-              <a href="#beranda" className="flex items-center space-x-3 rtl:space-x-reverse">
+              <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                   <motion.img initial={{ x: -100, opacity: 0 }}
                       animate={{ x: 0, opacity: 2 }}
                       transition={{ duration: 3 }} src="/gw.png" className="h-8" alt="Pantau Sampah" />
