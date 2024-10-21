@@ -154,3 +154,5 @@ const DetailDevice = ({ params }) => {
 }
 
 export default DetailDevice;
+
+// developed by Natagw, natagw.my.id

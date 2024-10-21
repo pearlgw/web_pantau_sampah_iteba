@@ -17,3 +17,6 @@ export default function Home() {
     </>
   );
 }
+
+
+// developed by Natagw, natagw.my.id

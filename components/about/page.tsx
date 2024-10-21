@@ -55,3 +55,5 @@ const AboutPage = () => {
 }
 
 export default AboutPage
+
+// developed by Natagw, natagw.my.id

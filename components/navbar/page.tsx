@@ -77,13 +77,13 @@ const NavbarPage = () => {
                               Pantau Sampah
                           </motion.a>
                       </li>
-                      <li>
+                      {/* <li>
                           <motion.a initial={{ y: -100, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
                               transition={{ duration: 2 }} href="/#perangkatIoT" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
                               Perangkat IoT
                           </motion.a>
-                      </li>
+                      </li> */}
                   </ul>
               </div>
           </div>
@@ -92,3 +92,5 @@ const NavbarPage = () => {
 }
 
 export default NavbarPage
+
+// developed by Natagw, natagw.my.id

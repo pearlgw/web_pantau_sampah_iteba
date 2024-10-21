@@ -121,3 +121,5 @@ const ContentSampah = async () => {
 };
 
 export default ContentSampah;
+
+// developed by Natagw, natagw.my.id

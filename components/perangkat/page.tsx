@@ -35,8 +35,8 @@ const PerangkatIoT = () => {
                 <motion.h1 ref={ref} // Menambahkan referensi ke elemen
                     initial={{ y: -100, opacity: 0 }}
                     animate={isVisible ? { y: 0, opacity: 1 } : {}} // Menerapkan animasi jika elemen terlihat
-                    transition={{ duration: 2 }} className='text-center text-white text-3xl md:text-5xl font-extrabold'>
-                    Perangkat IoT
+                    transition={{ duration: 2 }} className='text-center text-white text-xl md:text-3xl font-extrabold'>
+                    Development of Innovative Model for Waste <br /> Management System Using Internet of Things (IoT) and Machine Learning
                 </motion.h1>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center px-5 md:px-14 gap-5 md:gap-10'>
@@ -58,3 +58,5 @@ const PerangkatIoT = () => {
 }
 
 export default PerangkatIoT
+
+// developed by Natagw, natagw.my.id

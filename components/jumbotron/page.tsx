@@ -10,10 +10,10 @@ const JumbotronPage = () => {
               <div className="flex flex-col justify-center">
                   <motion.h1 initial={{ x: -100, opacity: 0 }}
                       animate={{ x: 0, opacity: 2 }}
-                      transition={{ duration: 2 }} className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Pemantauan Sampah dengan Teknologi AI</motion.h1>
+                      transition={{ duration: 2 }} className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Sistem Monitoring Sampah Berbasis IoT & Machine Learning Kota Batam</motion.h1>
                   <motion.p initial={{ x: 100, opacity: 0 }}
                       animate={{ x: 0, opacity: 2 }}
-                      transition={{ duration: 2 }} className="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Pantau Sampah memanfaatkan kecerdasan buatan untuk menganalisis dan mengoptimalkan pengelolaan limbah, membantu menciptakan lingkungan yang lebih bersih.</motion.p>
+                      transition={{ duration: 2 }} className="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Pantau Sampah memanfaatkan machine learning untuk menganalisis dan mengoptimalkan pengelolaan limbah, membantu menciptakan lingkungan yang lebih bersih.</motion.p>
                   <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
                       <motion.a initial={{ x: -100, opacity: 0 }}
                           animate={{ x: 0, opacity: 2 }}
@@ -48,3 +48,6 @@ const JumbotronPage = () => {
 }
 
 export default JumbotronPage
+
+
+// developed by Natagw, natagw.my.id

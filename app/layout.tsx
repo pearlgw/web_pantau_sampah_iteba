@@ -34,3 +34,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+// developed by Natagw, natagw.my.id

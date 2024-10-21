@@ -20,9 +20,9 @@ const Footer = () => {
                       <li>
                           <a href="#pantauSampah" className="hover:underline me-4 md:me-6">Pantau Sampah</a>
                       </li>
-                      <li>
+                      {/* <li>
                           <a href="#perangkatIoT" className="hover:underline">Perangkat IoT</a>
-                      </li>
+                      </li> */}
                   </ul>
               </div>
               <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
@@ -33,3 +33,6 @@ const Footer = () => {
 }
 
 export default Footer
+
+
+// developed by Natagw, natagw.my.id
