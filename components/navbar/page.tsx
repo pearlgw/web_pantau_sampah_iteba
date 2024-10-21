@@ -59,28 +59,28 @@ const NavbarPage = () => {
                       <li>
                           <motion.a initial={{ y: -100, opacity: 0 }} 
                               animate={{ y: 0, opacity: 1 }}
-                              transition={{ duration: 0.5 }} href="#beranda" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
+                              transition={{ duration: 0.5 }} href="/#beranda" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
                               Beranda
                           </motion.a>
                       </li>
                       <li>
                           <motion.a initial={{ y: -100, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
-                              transition={{ duration: 1 }} href="#tentang" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
+                              transition={{ duration: 1 }} href="/#tentang" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
                               Tentang
                           </motion.a>
                       </li>
                       <li>
                           <motion.a initial={{ y: -100, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
-                              transition={{ duration: 1.5 }} href="#pantauSampah" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
+                              transition={{ duration: 1.5 }} href="/#pantauSampah" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
                               Pantau Sampah
                           </motion.a>
                       </li>
                       <li>
                           <motion.a initial={{ y: -100, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
-                              transition={{ duration: 2 }} href="#perangkatIoT" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
+                              transition={{ duration: 2 }} href="/#perangkatIoT" className="block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-700 md:hover:bg-transparent hover:underline">
                               Perangkat IoT
                           </motion.a>
                       </li>
